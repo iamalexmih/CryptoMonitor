@@ -10,8 +10,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,swift,xcode\
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,swift,xcode\
 \
-infoCrypto/Networking\
-				ApiKey.swift\
+infoCrypto/Networking/ApiKey.swift\
 \
 ### macOS ###\
 # General\
@@ -143,3 +142,4 @@ iOSInjectionProject/\
 **/xcshareddata/WorkspaceSettings.xcsettings\
 \
 # End of https://www.toptal.com/developers/gitignore/api/macos,swift,xcode}
+infoCrypto/Networking/ApiKey.swift
