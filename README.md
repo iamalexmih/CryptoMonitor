@@ -15,6 +15,6 @@
     - индекс страха и жадности btc.
 
 <p align="center">
-<img src="https://github.com/iamalexmih/Wisdom--Pet-project-/blob/main/wisdom/screenshots/screenshots%20main%20screen%20App.png" 
+<img src="https://github.com/iamalexmih/CryptoMonitor/blob/main/Screenshot/screenshots%20main%20screen%20App.png" 
 alt="screenshots main Screen App" width="300" />
 </p>
