@@ -9,7 +9,6 @@ import UIKit
 
 
 class ViewController: UIViewController {
-
     
     @IBOutlet var tableView: UITableView!
     
@@ -18,7 +17,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(CustomHeader.self, forHeaderFooterViewReuseIdentifier: "CustomHeader")
+        tableView.sectionHeaderTopPadding = 0
         
         NomicsAPICaller.shared.getAllCryptoData { [weak self] crypto in
             if let crypto = crypto {
@@ -27,17 +29,20 @@ class ViewController: UIViewController {
                                                       symbol: cryptoModel.symbol,
                                                       price: cryptoModel.price)
                 })
-
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
             }
         }
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-    }  
 
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
+        view.titleCurrency.text = "USD"
+        return view
+    }
+    
 }
 
 
