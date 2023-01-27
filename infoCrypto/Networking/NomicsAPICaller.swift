@@ -13,8 +13,6 @@ final class NomicsAPICaller {
     static let shared = NomicsAPICaller()
     
     private struct Constants {
-        //TODO: Вынести apiKey в отд фаил и добавить его в gitignor
-        //static let apiKey = "4c65c458dfd0fadd0f507856e2e73904b307e7a2"
         static let assetsEndpoint = "https://api.nomics.com/v1/currencies/"
         static let interval = "&interval=1d"
         static let currency = "&convert=USD"
@@ -27,10 +25,10 @@ final class NomicsAPICaller {
         
     }
     
-    public func getAllCryptoData(completion: @escaping ([CryptoModel]?) -> Void) {
+    public func getAllCryptoData(completion: @escaping ([CryptoNomicModel]?) -> Void) {
         let urlStr = Constants.assetsEndpoint
                         + "ticker?key="
-                        + apiKey
+                        + apiKeyNomic
                         + "&ranks=1"
                         + Constants.interval
                         + Constants.currency
@@ -42,7 +40,7 @@ final class NomicsAPICaller {
             
             guard let data = data, error == nil else { return print("error URLSession")}
             
-            let cryptos = try? JSONDecoder().decode([CryptoModel].self, from: data)
+            let cryptos = try? JSONDecoder().decode([CryptoNomicModel].self, from: data)
             completion(cryptos)
             
         }

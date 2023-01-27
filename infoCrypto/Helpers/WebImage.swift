@@ -21,7 +21,7 @@ class WebImageView: UIImageView {
         if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
             //if image exist in cache, else
             self.image = UIImage(data: cachedResponse.data)
-            //print("from cache")
+            print("from cache")
             return
         }
         

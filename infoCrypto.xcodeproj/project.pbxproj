@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B59E43C828AEA2E2001B7BBB /* CryptoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59E43C728AEA2E2001B7BBB /* CryptoModel.swift */; };
+		B51FDE5B2984568200396B52 /* WorldcoinindexAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51FDE5A2984568200396B52 /* WorldcoinindexAPICaller.swift */; };
+		B51FDE5D29845AFD00396B52 /* CryptoWorldcoinindexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51FDE5C29845AFD00396B52 /* CryptoWorldcoinindexModel.swift */; };
+		B59E43C828AEA2E2001B7BBB /* CryptoNomicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59E43C728AEA2E2001B7BBB /* CryptoNomicModel.swift */; };
 		B59E43EC28AFE9D0001B7BBB /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59E43EB28AFE9D0001B7BBB /* WebImage.swift */; };
 		B59E43EE28B01C2B001B7BBB /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59E43ED28B01C2B001B7BBB /* CustomHeader.swift */; };
 		B59E43F028B01C5B001B7BBB /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59E43EF28B01C5B001B7BBB /* ApiKey.swift */; };
@@ -22,7 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B59E43C728AEA2E2001B7BBB /* CryptoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoModel.swift; sourceTree = "<group>"; };
+		B51FDE5A2984568200396B52 /* WorldcoinindexAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldcoinindexAPICaller.swift; sourceTree = "<group>"; };
+		B51FDE5C29845AFD00396B52 /* CryptoWorldcoinindexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoWorldcoinindexModel.swift; sourceTree = "<group>"; };
+		B59E43C728AEA2E2001B7BBB /* CryptoNomicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoNomicModel.swift; sourceTree = "<group>"; };
 		B59E43EB28AFE9D0001B7BBB /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
 		B59E43ED28B01C2B001B7BBB /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		B59E43EF28B01C5B001B7BBB /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
@@ -49,10 +53,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B51FDE5E29845D6E00396B52 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B59E43C728AEA2E2001B7BBB /* CryptoNomicModel.swift */,
+				B51FDE5C29845AFD00396B52 /* CryptoWorldcoinindexModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B59E43F128B01E79001B7BBB /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				B5D0A58B28AE96C90032C0F4 /* NomicsAPICaller.swift */,
+				B51FDE5A2984568200396B52 /* WorldcoinindexAPICaller.swift */,
 				B59E43EF28B01C5B001B7BBB /* ApiKey.swift */,
 			);
 			path = Networking;
@@ -97,7 +111,7 @@
 				B5D0A57B28AE95910032C0F4 /* ViewController.swift */,
 				B5D0A58D28AE9F370032C0F4 /* CryptoTableViewCell.swift */,
 				B59E43ED28B01C2B001B7BBB /* CustomHeader.swift */,
-				B59E43C728AEA2E2001B7BBB /* CryptoModel.swift */,
+				B51FDE5E29845D6E00396B52 /* Model */,
 				B59E43F328B01EBD001B7BBB /* Helpers */,
 				B59E43F128B01E79001B7BBB /* Networking */,
 				B59E43F228B01E98001B7BBB /* App */,
@@ -180,11 +194,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B51FDE5B2984568200396B52 /* WorldcoinindexAPICaller.swift in Sources */,
 				B59E43EC28AFE9D0001B7BBB /* WebImage.swift in Sources */,
 				B59E43EE28B01C2B001B7BBB /* CustomHeader.swift in Sources */,
-				B59E43C828AEA2E2001B7BBB /* CryptoModel.swift in Sources */,
+				B59E43C828AEA2E2001B7BBB /* CryptoNomicModel.swift in Sources */,
 				B5D0A57C28AE95910032C0F4 /* ViewController.swift in Sources */,
 				B5D0A57828AE95910032C0F4 /* AppDelegate.swift in Sources */,
+				B51FDE5D29845AFD00396B52 /* CryptoWorldcoinindexModel.swift in Sources */,
 				B5D0A57A28AE95910032C0F4 /* SceneDelegate.swift in Sources */,
 				B5D0A58E28AE9F370032C0F4 /* CryptoTableViewCell.swift in Sources */,
 				B59E43F028B01C5B001B7BBB /* ApiKey.swift in Sources */,
