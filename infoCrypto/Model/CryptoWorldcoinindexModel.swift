@@ -9,7 +9,7 @@ import Foundation
 
 
 struct CryptoWorldcoinindexModel: Codable {
-    let markets: [Market]?
+    let markets: [[Market]]?
 
     enum CodingKeys: String, CodingKey {
         case markets = "Markets"

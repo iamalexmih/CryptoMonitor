@@ -10,8 +10,12 @@ import UIKit
 
 struct CryptoTableViewCellViewModel {
     let name: String
-    let symbol: String
-    let price: String
+    let label: String
+    var labelForIcon: String {
+        let arrayHelper = label.components(separatedBy: "/")
+        return arrayHelper[0]
+    }
+    let price: Double
 }
 
 class CryptoTableViewCell: UITableViewCell {
@@ -27,12 +31,12 @@ class CryptoTableViewCell: UITableViewCell {
     
     func config(with viewModel: CryptoTableViewCellViewModel) {
         labelName.text = viewModel.name
-        labelSymbol.text = viewModel.symbol
-        labelPrice.text = viewModel.price
+        labelSymbol.text = viewModel.label
+        labelPrice.text =  String(format: "%.3f", viewModel.price)
         
         imageLogoCrypto.layer.cornerRadius = imageLogoCrypto.frame.height/2
         
-        let urlStr = "https://coinicons-api.vercel.app/api/icon/\(viewModel.symbol.lowercased())"
+        let urlStr = "https://coinicons-api.vercel.app/api/icon/\(viewModel.labelForIcon.lowercased())"
         imageLogoCrypto.set(imageURL: urlStr)
         
     }

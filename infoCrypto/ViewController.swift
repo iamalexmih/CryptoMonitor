@@ -22,16 +22,18 @@ class ViewController: UIViewController {
         tableView.register(CustomHeader.self, forHeaderFooterViewReuseIdentifier: "CustomHeader")
         tableView.sectionHeaderTopPadding = 0
         
-        NomicsAPICaller.shared.getAllCryptoData { [weak self] crypto in
+        WorldcoinindexAPICaller.shared.getAllCryptoData { [weak self] crypto in
             if let crypto = crypto {
-                self?.cryptoItems = crypto.compactMap({ cryptoModel in
-                    CryptoTableViewCellViewModel.init(name: cryptoModel.name,
-                                                      symbol: cryptoModel.symbol,
-                                                      price: cryptoModel.price)
-                })
+                self?.cryptoItems = (crypto.compactMap({ cryptoModel in
+                    CryptoTableViewCellViewModel.init(name: cryptoModel.name ?? "XXX",
+                                                      label: cryptoModel.label ?? "YYY",
+                                                      price: cryptoModel.price ?? 333.3)
+                }))
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
+            } else {
+                print("crypto нет")
             }
         }
 
@@ -39,7 +41,7 @@ class ViewController: UIViewController {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
-        view.titleCurrency.text = "USD"
+        
         return view
     }
     
