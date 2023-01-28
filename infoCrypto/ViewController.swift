@@ -22,29 +22,36 @@ class ViewController: UIViewController {
         tableView.register(CustomHeader.self, forHeaderFooterViewReuseIdentifier: "CustomHeader")
         tableView.sectionHeaderTopPadding = 0
         
-        WorldcoinindexAPICaller.shared.getAllCryptoData { [weak self] crypto in
-            if let crypto = crypto {
-                self?.cryptoItems = (crypto.compactMap({ cryptoModel in
-                    CryptoTableViewCellViewModel.init(name: cryptoModel.name ?? "XXX",
-                                                      label: cryptoModel.label ?? "YYY",
-                                                      price: cryptoModel.price ?? 333.3)
-                }))
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
+        fetch()
+    }
+
+    
+    func fetch() {
+        ApiServiceWorldCoinIndex.shared.fetchAllCrypto { [weak self] result in
+            switch result {
+            case .success(let crypto):
+                if let crypto = crypto {
+                    let cryptoItemsAll = (crypto.compactMap({ cryptoModel in
+                        CryptoTableViewCellViewModel.init(name: cryptoModel.name ?? "N/A",
+                                                          label: cryptoModel.label ?? "N/A",
+                                                          price: cryptoModel.price ?? 0.0)
+                    }))
+                    self?.cryptoItems = cryptoItemsAll.filter({ $0.price > 0.1 })
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
                 }
-            } else {
-                print("crypto нет")
+            case .failure(let failure):
+                print("Error ApiCallerWorldCoinIndex: " + failure.localizedDescription)
             }
         }
-
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
-        
-        return view
     }
     
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
+        return view
+    }
 }
 
 
@@ -56,7 +63,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CryptoTableViewCell.cellId, for: indexPath) as? CryptoTableViewCell else { fatalError() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CryptoTableViewCell.cellId,
+                                                       for: indexPath) as? CryptoTableViewCell else { fatalError() }
         let currentCrypto = cryptoItems[indexPath.row]
         cell.config(with: currentCrypto)
         
