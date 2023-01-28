@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct CryptoWorldcoinindexModel: Codable {
+struct CryptoWorldCoinIndexModel: Codable {
     let markets: [[Market]]?
 
     enum CodingKeys: String, CodingKey {
@@ -16,6 +16,13 @@ struct CryptoWorldcoinindexModel: Codable {
     }
 }
 
+struct SelectedCryptoWorldCoinIndexModel: Codable {
+    let markets: [Market]?
+
+    enum CodingKeys: String, CodingKey {
+        case markets = "Markets"
+    }
+}
 
 struct Market: Codable {
     let label: String?
