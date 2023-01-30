@@ -26,14 +26,6 @@ class ApiServiceWorldCoinIndex: ApiServiceProtocol {
         static let eth = "ethbtc"
     }
     
-//https://www.worldcoinindex.com/apiservice/ticker?key={key}&label=ethbtc-ltcbtc&fiat=btc
-//https://www.worldcoinindex.com/apiservice/ticker?key=rJhQDpvV7zoi74gnEBZ7BTU7Nr8QOUVg5sp&label=rplbtc-ltcbtc&fiat=usd
-    
-    
-//https://www.worldcoinindex.com/apiservice/v2getmarkets?key={key}&fiat=btc
-//https://www.worldcoinindex.com/apiservice/v2getmarkets?key=rJhQDpvV7zoi74gnEBZ7BTU7Nr8QOUVg5sp&fiat=usd
-    
-    
     func fetchSelectedCrypto(completion: @escaping (Result<[Market]?, Error>) -> Void) {
         let urlStr = Constants.httpTicker
         + apiKeyWorldcoinindex
