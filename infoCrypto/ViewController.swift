@@ -114,6 +114,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.register(CustomHeader.self, forHeaderFooterViewReuseIdentifier: "CustomHeader")
         tableView.sectionHeaderTopPadding = 0
+        tableView.rowHeight = 55
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

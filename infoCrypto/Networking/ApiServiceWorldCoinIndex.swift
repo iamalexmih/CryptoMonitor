@@ -34,9 +34,7 @@ class ApiServiceWorldCoinIndex: ApiServiceProtocol {
         + CryptoLabel.litecoin
         + "&fiat="
         + Constants.fiat
-        
-        print("urlStr = \(urlStr)")
-        
+                
         guard let url = URL(string: urlStr) else {
             let error = ApiError.badUrl
             completion(Result.failure(error))
