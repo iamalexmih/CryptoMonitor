@@ -59,6 +59,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="MOC-Fx-qRO"/>
                                                         <constraint firstAttribute="width" constant="160" id="PiH-1c-Qcc"/>
+                                                        <constraint firstItem="hFV-Sv-LjW" firstAttribute="leading" secondItem="D2p-99-5LD" secondAttribute="leading" id="qVo-Ao-3ap"/>
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DmY-xd-T5H">
@@ -69,6 +70,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="DmY-xd-T5H" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="D2p-99-5LD" secondAttribute="trailing" constant="8" symbolic="YES" id="EkC-em-LwT"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="DmY-xd-T5H" secondAttribute="trailing" constant="16" id="LR5-be-k0K"/>
                                                 <constraint firstItem="D2p-99-5LD" firstAttribute="leading" secondItem="Df5-Q5-jvD" secondAttribute="leading" constant="30" id="UNy-OS-6IM"/>
                                                 <constraint firstItem="DmY-xd-T5H" firstAttribute="centerY" secondItem="Df5-Q5-jvD" secondAttribute="centerY" id="aQM-eV-OHm"/>

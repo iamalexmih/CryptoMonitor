@@ -38,7 +38,7 @@ class CustomHeader: UITableViewHeaderFooterView {
         contentView.addSubview(titleCurrency)
         contentView.addSubview(titleCrypto)        
         
-        contentView.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        //contentView.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
         titleCurrency.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40).isActive = true
         titleCurrency.heightAnchor.constraint(equalToConstant: 20).isActive = true
