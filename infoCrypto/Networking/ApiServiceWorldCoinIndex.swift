@@ -64,8 +64,6 @@ class ApiServiceWorldCoinIndex: ApiServiceProtocol {
         + apiKeyWorldcoinindex
         + "&fiat="
         + Constants.fiat
-
-        print("urlStr = \(urlStr)")
         
         guard let url = URL(string: urlStr) else {
             let error = ApiError.badUrl

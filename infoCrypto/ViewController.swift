@@ -11,8 +11,11 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
-    private var cryptoItems: [CryptoTableViewCellViewModel] = []
-    let searchController = UISearchController(searchResultsController: nil)
+    @IBOutlet weak var visibleFavoriteCrypto: UISwitch!
+    
+    private var cryptoListAllItems: [CryptoTableViewCellViewModel] = []
+    private var cryptoListForWorkWithFavoritesSwitcher: [CryptoTableViewCellViewModel] = []
+    private let searchController = UISearchController(searchResultsController: nil)
     private var cryptoItemsFiltered: [CryptoTableViewCellViewModel] = []
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
@@ -25,7 +28,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         tableViewConfig()
         searchControllerConfig()
         scopeBarConfig()
@@ -44,7 +47,7 @@ class ViewController: UIViewController {
                                                           label: cryptoModel.label ?? "N/A",
                                                           price: cryptoModel.price ?? 0.0)
                     })
-                    self?.cryptoItems = cryptoItemsAll.filter { $0.price > 0.1 }
+                    self?.cryptoListAllItems = cryptoItemsAll.filter { $0.price > 0.1 }
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
                     }
@@ -55,11 +58,23 @@ class ViewController: UIViewController {
         }
     }
     
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
-        return view
+    @IBAction func visibleFavoriteCryptoToggle(_ sender: Any) {
+        if visibleFavoriteCrypto.isOn {
+            cryptoListForWorkWithFavoritesSwitcher = cryptoListAllItems
+            cryptoListAllItems = favoriteListForTableView()
+        } else {
+            cryptoListAllItems = cryptoListForWorkWithFavoritesSwitcher
+        }
+        tableView.reloadData()
     }
+    
+    func favoriteListForTableView() -> [CryptoTableViewCellViewModel] {
+        let favoriteListForTableView = cryptoListAllItems.filter { item in
+            return FavoriteData.shared.favoriteList.contains(item.name)
+        }
+        return favoriteListForTableView
+    }
+
 }
 
 
@@ -81,7 +96,7 @@ extension ViewController: UISearchResultsUpdating {
     }
     
     private func filterContentForSearchText(_ searchText: String, scope: String = "Name") {
-        cryptoItemsFiltered = cryptoItems.filter{ item in
+        cryptoItemsFiltered = cryptoListAllItems.filter{ item in
             let selectedCategoryLabelCrypto = scope == "Label"
             if selectedCategoryLabelCrypto {
                 return item.label.lowercased().contains(searchText.lowercased())
@@ -121,7 +136,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if isFilteringEnable {
             return cryptoItemsFiltered.count
         } else {
-            return cryptoItems.count
+            return cryptoListAllItems.count
         }
     }
     
@@ -132,11 +147,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if isFilteringEnable {
             currentCrypto = cryptoItemsFiltered[indexPath.row]
         } else {
-            currentCrypto = cryptoItems[indexPath.row]
+            currentCrypto = cryptoListAllItems[indexPath.row]
         }
         
         cell.config(with: currentCrypto)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
+        return view
     }
 }
