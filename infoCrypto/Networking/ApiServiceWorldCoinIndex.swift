@@ -48,6 +48,7 @@ class ApiServiceWorldCoinIndex: ApiServiceProtocol {
                 do {
                     let selectedCrypto = try decoder.decode(SelectedCryptoWorldCoinIndexModel.self, from: data)
                     let cryptosList = selectedCrypto.markets
+                    
                     completion(Result.success(cryptosList))
                 } catch {
                     completion(Result.failure(ApiError.parsing(error as? DecodingError )))
@@ -79,7 +80,7 @@ class ApiServiceWorldCoinIndex: ApiServiceProtocol {
                 do {
                     let cryptosList = try decoder.decode(CryptoWorldCoinIndexModel.self, from: data)
                     let cryptos = cryptosList.markets?.first
-                    completion(Result.success(cryptos))
+                        completion(Result.success(cryptos))
                 } catch {
                     completion(Result.failure(ApiError.parsing(error as? DecodingError )))
                 }

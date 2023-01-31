@@ -30,6 +30,7 @@ class ViewController: UIViewController {
         searchControllerConfig()
         scopeBarConfig()
         fetchAllCrypto()
+        FavoriteData.shared.favoriteList = FavoriteCryptoStorageManager.shared.load()
     }
 
     
@@ -88,7 +89,6 @@ extension ViewController: UISearchResultsUpdating {
                 return item.name.lowercased().contains(searchText.lowercased())
             }
         }
-        
         tableView.reloadData()
     }
 }

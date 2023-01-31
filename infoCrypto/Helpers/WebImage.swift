@@ -15,11 +15,12 @@ class WebImageView: UIImageView {
         
         currentUrlString = imageURL
         guard let imageURL = imageURL, let url = URL(string: imageURL) else {
-            self.image = nil
-            return }
+            image = nil
+            return
+        }
 
-        if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) {
-            self.image = UIImage(data: cachedResponse.data)
+        if let cachedResponse = URLCache.shared.cachedResponse(for: URLRequest(url: url)) { 
+            image = UIImage(data: cachedResponse.data)
             return
         }
                 
@@ -39,7 +40,7 @@ class WebImageView: UIImageView {
         URLCache.shared.storeCachedResponse(cachedResponse, for: URLRequest(url: responseURL))
         
         if responseURL.absoluteString == currentUrlString {
-            self.image = UIImage(data: data)
+            image = UIImage(data: data)
         }
     }
     
